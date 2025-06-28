@@ -2,22 +2,6 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
-# # Install system dependencies
-# RUN apt-get update && apt-get install -y \
-#     && rm -rf /var/lib/apt/lists/*
-
-# # Clear cache and update
-# # RUN apt-get clean && \
-#     # rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
-#     # apt-get update
-
-# Install packages with retry logic
-# RUN apt-get update && apt-get install -y \
-#     --no-install-recommends \
-#     --fix-missing \
-#     apt-get clean && \
-#     rm -rf /var/lib/apt/lists/*
-
 # Install uv for dependency management
 RUN pip install uv
 
@@ -25,7 +9,6 @@ RUN pip install uv
 COPY pyproject.toml uv.lock ./
 
 # Create a src directory for the package
-# RUN mkdir src
 COPY agents/ ./agents/
 COPY utils/ ./utils/
 COPY main.py ./

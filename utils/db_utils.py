@@ -53,7 +53,7 @@ def query_peer_benchmarks(locality: str, cuisine: str) -> Dict[str, Any]:
     """
     Query peer benchmarks data for a given locality and cuisine
     """
-    query = "SELECT * FROM peer_benchmarks WHERE locality = %s AND cuisine = %s;"
+    query = "SELECT * FROM peer_benchmarks WHERE locality = %s OR cuisine = %s;"
     return execute_query(query, (locality, cuisine))
 
 def query_ads_data(restaurant_id: str) -> Dict[str, Any]:
