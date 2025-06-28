@@ -1,48 +1,55 @@
 -- Drop tables if they exist
 DROP TABLE IF EXISTS ads_data CASCADE;
-DROP TABLE IF EXISTS peer_benchmarks CASCADE;
 DROP TABLE IF EXISTS restaurant_metrics CASCADE;
+DROP TABLE IF EXISTS peer_benchmarks CASCADE;
 
--- Create tables with the specified schema
-CREATE TABLE restaurant_metrics (
-    restaurant_id VARCHAR(10),
-    restaurant_name VARCHAR(50),
-    locality VARCHAR(50),
-    cuisine VARCHAR(50),
-    date DATE,
-    bookings INT,
-    cancellations INT,
-    covers INT,
-    avg_spend_per_cover DECIMAL(10,2),
-    revenue DECIMAL(10,2),
-    avg_rating DECIMAL(2,1),
-    PRIMARY KEY (restaurant_id, date)
-);
-
-CREATE TABLE ads_data (
-    restaurant_id VARCHAR(10),
-    campaign_id VARCHAR(10),
-    campaign_start DATE,
-    campaign_end DATE,
-    impressions INT,
-    clicks INT,
-    conversions INT,
-    spend DECIMAL(10,2),
-    revenue_generated DECIMAL(10,2),
-    PRIMARY KEY (campaign_id)
-);
-
+-- Create peer_benchmarks first
 CREATE TABLE peer_benchmarks (
-    locality VARCHAR(50),
-    cuisine VARCHAR(50),
-    avg_bookings DECIMAL(10,2),
-    avg_conversion_rate DECIMAL(5,2),
-    avg_ads_spend DECIMAL(10,2),
-    avg_roi DECIMAL(5,2),
-    avg_revenue DECIMAL(10,2),
-    avg_rating DECIMAL(2,1),
-    PRIMARY KEY (locality, cuisine)
+    locality VARCHAR(50) NOT NULL,
+    cuisine VARCHAR(50) NOT NULL,
+    avg_bookings DECIMAL(10,2) NOT NULL,
+    avg_conversion_rate DECIMAL(5,2) NOT NULL,
+    avg_ads_spend DECIMAL(10,2) NOT NULL,
+    avg_roi DECIMAL(5,2) NOT NULL,
+    avg_revenue DECIMAL(10,2) NOT NULL,
+    avg_rating DECIMAL(2,1) NOT NULL
 );
+
+-- Create restaurant_metrics
+CREATE TABLE restaurant_metrics (
+    restaurant_id VARCHAR(10) NOT NULL,
+    restaurant_name VARCHAR(50) NOT NULL,
+    locality VARCHAR(50) NOT NULL,
+    cuisine VARCHAR(50) NOT NULL,
+    date DATE NOT NULL,
+    bookings INT NOT NULL,
+    cancellations INT NOT NULL,
+    covers INT NOT NULL,
+    avg_spend_per_cover DECIMAL(10,2) NOT NULL,
+    revenue DECIMAL(10,2) NOT NULL,
+    avg_rating DECIMAL(2,1) NOT NULL
+);
+
+-- Create ads_data
+CREATE TABLE ads_data (
+    campaign_id VARCHAR(10) NOT NULL,
+    restaurant_id VARCHAR(10) NOT NULL,
+    campaign_start DATE NOT NULL,
+    campaign_end DATE NOT NULL,
+    impressions INT NOT NULL,
+    clicks INT NOT NULL,
+    conversions INT NOT NULL,
+    spend DECIMAL(10,2) NOT NULL,
+    revenue_generated DECIMAL(10,2) NOT NULL,
+    CONSTRAINT check_campaign_dates CHECK (campaign_end >= campaign_start)
+);
+
+-- Create indexes for fields used in WHERE conditions
+CREATE INDEX idx_restaurant_metrics_restaurant_id ON restaurant_metrics(restaurant_id);
+CREATE INDEX idx_restaurant_metrics_restaurant_name ON restaurant_metrics(restaurant_name);
+CREATE INDEX idx_ads_data_restaurant_id ON ads_data(restaurant_id);
+CREATE INDEX idx_peer_benchmarks_locality ON peer_benchmarks(locality);
+CREATE INDEX idx_peer_benchmarks_cuisine ON peer_benchmarks(cuisine);
 
 -- Insert sample data for restaurant_metrics
 INSERT INTO restaurant_metrics (restaurant_id, restaurant_name, locality, cuisine, date, bookings, cancellations, covers, avg_spend_per_cover, revenue, avg_rating) VALUES
