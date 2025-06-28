@@ -69,3 +69,10 @@ def query_restaurant_metrics(restaurant_id: str) -> Dict[str, Any]:
     """
     query = "SELECT * FROM restaurant_metrics WHERE restaurant_id = %s;"
     return execute_query(query, (restaurant_id,))
+
+def query_restaurant_name_to_restaurant_id(restaurant_name: str) -> Dict[str, Any]:
+    """
+    Query restaurant name to restaurant id
+    """
+    query = "SELECT restaurant_id FROM restaurant_metrics WHERE restaurant_name = %s;"
+    return execute_query(query, (restaurant_name,))

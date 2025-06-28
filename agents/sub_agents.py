@@ -1,10 +1,9 @@
 import logging
 
 from google.adk.agents import LlmAgent  # type: ignore
-from google.adk.tools import google_search  # type: ignore
 
 from utils.config import settings
-from utils.db_utils import query_ads_data, query_restaurant_metrics, query_peer_benchmarks
+from utils.db_utils import query_ads_data, query_restaurant_metrics, query_peer_benchmarks, query_restaurant_name_to_restaurant_id
 
 logger = logging.getLogger(__name__)
 
@@ -72,6 +71,7 @@ class YieldAgent(LlmAgent):  # type: ignore
             1. query_ads_data: To get ads data for the restaurant.
             2. query_restaurant_metrics: To get restaurant metrics data. 
             3. query_peer_benchmarks: To get peer benchmarks data for the locality and cuisine of the restaurant.
+            4. query_restaurant_name_to_restaurant_id: To get restaurant id from restaurant name.
             
             We have 3 tables in the database:
             1. ads_data: This table contains the ads data for the restaurant.
@@ -107,7 +107,8 @@ class YieldAgent(LlmAgent):  # type: ignore
             tools=[
                 query_ads_data,
                 query_restaurant_metrics,
-                query_peer_benchmarks
+                query_peer_benchmarks,
+                query_restaurant_name_to_restaurant_id
             ],
 )
 
