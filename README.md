@@ -8,7 +8,7 @@ A powerful AI-powered Yield Optimiser Agent that analyzes restaurant performance
 - Ad campaign effectiveness evaluation
 - Peer benchmarking
 - Data-driven recommendations
-- Support for both local testing and ADK web deployment
+- Support Google ADK based web for testing
 
 ## Prerequisites
 
@@ -49,7 +49,7 @@ ad-agent/
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/desaiankitb/ad-agent.git
    cd ad-agent
    ```
 
