@@ -11,7 +11,6 @@ COPY pyproject.toml uv.lock ./
 # Create a src directory for the package
 COPY agents/ ./agents/
 COPY utils/ ./utils/
-COPY main.py ./
 COPY config/config.ini ./config/config.ini
 COPY README.md ./
 

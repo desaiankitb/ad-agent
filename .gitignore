@@ -13,6 +13,6 @@ wheels/
 config/config.ini
 
 # Data 
-data/*
+/data/
 *.pdf
 *.jpg

@@ -5,10 +5,6 @@ services:
     build:
       context: .
       no_cache: true
-    environment:
-      - GEMINI_API_KEY=${GEMINI_API_KEY}
-      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
-      # - DB_URL=postgresql://adagent:adagent@db:5432/adagent
     depends_on:
       - db
     ports:

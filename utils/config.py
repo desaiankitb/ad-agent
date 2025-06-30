@@ -78,9 +78,3 @@ class Settings(BaseSettings):
 
 
 settings = Settings()  # type: ignore
-
-
-if __name__ == "__main__":
-    # For testing purposes, print the settings
-    setttings = Settings()  # type: ignore
-    print(setttings.ADK_AGENTS.gemini_api_key)
