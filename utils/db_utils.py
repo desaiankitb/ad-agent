@@ -1,6 +1,5 @@
 import psycopg2
-from psycopg2 import Error
-from typing import Dict, Any, Optional, Union
+from typing import Dict, Any, Optional
 from datetime import date, datetime
 from decimal import Decimal
 from .config import settings

@@ -23,7 +23,8 @@ A powerful AI-powered Yield Optimiser Agent that analyzes restaurant performance
 ad-agent/
 ├── agents/
 │   ├── __init__.py
-│   └── agent.py          # Main agent implementation
+│   ├── agent.py          # Main agent implementation
+│   └── sub_agents.py     # Specialized agent implementations
 ├── config/
 │   ├── config.ini        # Configuration settings (gitignored)
 │   └── config.ini.example
@@ -31,15 +32,10 @@ ad-agent/
 │   ├── __init__.py
 │   ├── config.py         # Configuration management
 │   ├── db_utils.py       # Database utilities
-│   ├── models.py         # Data models
-│   ├── pyproject.toml    # Utils package config
 │   ├── setup_db.py       # Database setup script
 │   └── setup_test_data.sql  # Database schema and test data
-├── .gitignore
-├── .python-version       # Python version specification
 ├── docker-compose.yml    # Docker compose configuration
 ├── Dockerfile           # Docker build configuration
-├── main.py              # Application entry point
 ├── pyproject.toml       # Project dependencies
 ├── README.md            # Project documentation
 └── uv.lock              # Dependency lock file

@@ -1,7 +1,6 @@
 import configparser
-import os
 from pathlib import Path
-from typing import Any, ClassVar, Dict, Tuple, Type
+from typing import Any, Dict, Tuple, Type
 
 from pydantic.fields import FieldInfo
 from pydantic_settings import (
@@ -10,7 +9,7 @@ from pydantic_settings import (
     SettingsConfigDict,
 )
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 class ADKAgents(BaseModel):
     gemini_api_key: str
