@@ -17,4 +17,4 @@ COPY README.md ./
 # Install project dependencies
 RUN uv pip install --system -e .
 
-CMD ["adk", "web", "--host", "0.0.0.0"]
+CMD ["adk", "web", "--host", "0.0.0.0", "--session_service_uri", "postgresql://ankitdesai:password@db:5432/ad-agent"]
