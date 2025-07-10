@@ -50,7 +50,7 @@ def execute_query(query: str, params: Optional[tuple] = None) -> Dict[str, Any]:
 
 def query_peer_benchmarks(locality: str, cuisine: str) -> Dict[str, Any]:
     """
-    Query peer benchmarks data for a given locality and cuisine
+    Query peer benchmarks data for a given locality OR cuisine
     """
     query = "SELECT * FROM peer_benchmarks WHERE locality = %s OR cuisine = %s;"
     return execute_query(query, (locality, cuisine))
